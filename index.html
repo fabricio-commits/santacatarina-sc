@@ -1,1 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>ITS Brasil | Internet de Verdade</title>
+    <!-- Bootstrap 5 + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background: #f8fafc;
+        }
+
+        /* Cores inspiradas em tecnologia + confiança */
+        :root {
+            --primary: #0f2b3d;
+            --primary-dark: #071e2c;
+            --secondary: #00a6c4;
+            --accent: #ff8c42;
+            --light-bg: #ffffff;
+            --gray-bg: #f1f5f9;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+        }
+
+        .navbar {
+            background: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: white !important;
+        }
+        .navbar-brand span {
+            color: var(--secondary);
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 600;
+            margin: 0 0.25rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary) !important;
+        }
+        .btn-outline-light {
+            border-color: rgba(255,255,255,0.3);
+            color: white;
+        }
+        .btn-outline-light:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+        }
+        .btn-primary-custom {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .btn-primary-custom:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,166,196,0.3);
+        }
+        .hero {
+            background: linear-gradient(135deg, #0a1c2a 0%, #0f2b3d 100%);
+            color: white;
+            padding: 100px 0 90px;
+            border-bottom: 4px solid var(--secondary);
+        }
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.2rem;
+            letter-spacing: -1px;
+        }
+        .hero .highlight {
+            color: var(--secondary);
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        .card-plan {
+            border: none;
+            border-radius: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: white;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+        }
+        .card-plan:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 45px -12px rgba(0,0,0,0.15);
+        }
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .badge-its {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .icon-feature {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .info-box {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f6;
+        }
+        footer {
+            background: var(--primary-dark);
+            color: #cddfe7;
+        }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: 0.2s;
+            color: white;
+            margin-right: 8px;
+        }
+        .social-icon:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .btn-wpp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+            z-index: 999;
+        }
+        .btn-wpp:hover {
+            background: #128C7E;
+            transform: scale(1.08);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Botão flutuante WhatsApp -->
+<a href="https://wa.me/557134020820?text=Olá%2C%20gostaria%20de%20mais%20informações%20sobre%20os%20planos%20ITS%20Brasil!" class="btn-wpp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ITS<span>Brasil</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item"><a class="nav-link active" href="#home">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#planos">Planos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                <li class="nav-item ms-lg-3"><a class="btn btn-outline-light rounded-pill px-4" href="#contato"><i class="fas fa-headset me-1"></i>Assinar</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO / APRESENTAÇÃO -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <span class="badge-its d-inline-block mb-3"><i class="fas fa-bolt me-1"></i> +15 anos de experiência</span>
+                <h1>Internet de alta performance <span class="highlight">sem limites</span> para você e sua família</h1>
+                <p class="lead my-4 opacity-75">Fibra óptica de verdade, suporte local e velocidade estável. Conecte-se com a ITS Brasil, a internet que leva seu nome adiante.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#planos" class="btn btn-primary-custom"><i class="fas fa-tachometer-alt me-2"></i>Ver planos</a>
+                    <a href="#contato" class="btn btn-outline-light rounded-pill px-4"><i class="fas fa-map-marker-alt me-2"></i>Central de atendimento</a>
+                </div>
+                <div class="row mt-5 g-3">
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card"><i class="fas fa-check-circle me-1"></i> <strong>99.9%</strong> <br> estabilidade</div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card"><i class="fas fa-tachometer-alt me-1"></i> <strong>500 Mega</strong> <br> ultra velocidade</div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card"><i class="fas fa-headset me-1"></i> <strong>24/7</strong> <br> suporte técnico</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3108/3108596.png" alt="Internet fibra" class="img-fluid" style="max-width: 280px; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2));">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO PLANOS -->
+<section id="planos" class="py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Planos que cabem no seu bolso</h2>
+            <p class="text-muted">Tecnologia fibra óptica com a melhor experiência para games, streaming e home office.</p>
+        </div>
+        <div class="row g-4">
+            <!-- Plano Básico -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card-plan h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div><i class="fas fa-wifi icon-feature"></i></div>
+                        <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill">Popular</span>
+                    </div>
+                    <h3 class="mt-3 fw-bold">Ultra 300 Mega</h3>
+                    <div class="plan-price mt-2">R$ 89,90 <span class="fs-6 text-muted">/mês</span></div>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>300 Mbps download / 150 Mbps upload</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Wi-Fi 6 de alto desempenho</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Suporte 24h via WhatsApp</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Instalação grátis</li>
+                    </ul>
+                    <div class="mt-auto"><a href="#contato" class="btn btn-outline-primary rounded-pill w-100 py-2">Quero esse plano</a></div>
+                </div>
+            </div>
+            <!-- Plano Premium -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card-plan h-100 p-4 border border-2 border-secondary shadow">
+                    <div class="d-flex justify-content-between">
+                        <div><i class="fas fa-rocket icon-feature" style="color: #ff8c42;"></i></div>
+                        <span class="badge-its">MAIS VENDIDO</span>
+                    </div>
+                    <h3 class="mt-3 fw-bold">Turbo 500 Mega</h3>
+                    <div class="plan-price mt-2">R$ 119,90 <span class="fs-6 text-muted">/mês</span></div>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>500 Mbps download / 250 Mbps upload</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Roteador Mesh + 1 ano de segurança</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Atendimento prioritário</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Primeira mensalidade com 50% OFF</li>
+                    </ul>
+                    <div class="mt-auto"><a href="#contato" class="btn btn-primary-custom rounded-pill w-100 py-2">Assinar agora</a></div>
+                </div>
+            </div>
+            <!-- Plano Gamer/Profissional -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card-plan h-100 p-4">
+                    <div><i class="fas fa-gamepad icon-feature"></i></div>
+                    <h3 class="mt-3 fw-bold">Gamer 1 Giga</h3>
+                    <div class="plan-price mt-2">R$ 179,90 <span class="fs-6 text-muted">/mês</span></div>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>1 Gbps (1000 Mega) de velocidade</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Rota dedicada para games e VPN</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Suporte técnico especializado</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-secondary me-2"></i>Equipamento de última geração</li>
+                    </ul>
+                    <div class="mt-auto"><a href="#contato" class="btn btn-outline-primary rounded-pill w-100 py-2">Garanta 1 Giga</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE E INFRAESTRUTURA + DADOS CADASTRAIS -->
+<section id="sobre" class="py-5">
+    <div class="container py-3">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title">Sobre a ITS Brasil</h2>
+                <p class="lead fw-semibold text-primary">Há mais de 17 anos conectando Salvador com inovação e compromisso.</p>
+                <p>Fundada em <strong>12 de abril de 2007</strong>, a ITS Telecomunicações LTDA nasceu com o propósito de levar internet de qualidade, com atendimento humano e tecnologia de ponta. Nossa estrutura em fibra óptica garante baixa latência e estabilidade mesmo nos horários de pico.</p>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <i class="fas fa-check-circle text-secondary mb-2 fs-4"></i>
+                        <p><strong>+5.000 clientes ativos</strong><br> em Salvador e região</p>
+                    </div>
+                    <div class="col-6">
+                        <i class="fas fa-trophy text-secondary mb-2 fs-4"></i>
+                        <p><strong>Prêmio Melhor ISP</strong><br> Região Nordeste 2023</p>
+                    </div>
+                </div>
+                <div class="info-box mt-3">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <div><i class="fas fa-building fa-2x text-secondary"></i></div>
+                        <div><strong>CNPJ:</strong> 08.772.214/0001-98 <br> <strong>Razão Social:</strong> Its Telecomunicacoes LTDA</div>
+                    </div>
+                    <hr class="my-3">
+                    <div><i class="fas fa-map-pin me-2 text-secondary"></i> <strong>Matriz:</strong> Rua Soldado Luiz Gonzaga das Virgens, 111 - Caminho das Arvores, Salvador - BA, CEP: 41820-560</div>
+                    <div class="mt-2"><i class="fas fa-calendar-alt me-2 text-secondary"></i> Situação Cadastral: Ativa desde <strong>12/04/2007</strong> · Regular</div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="info-box text-center">
+                            <i class="fas fa-chart-line icon-feature"></i>
+                            <h4 class="fw-bold">Tecnologia + Confiabilidade</h4>
+                            <p>Backbone redundante e equipamentos de última geração para você navegar, estudar e trabalhar sem interrupções.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="info-box text-center">
+                            <i class="fas fa-shield-alt icon-feature"></i>
+                            <h5>Segurança digital</h5>
+                            <p class="small">Proteção contra ameaças e rede monitorada 24/7.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="info-box text-center">
+                            <i class="fas fa-clock icon-feature"></i>
+                            <h5>Suporte ágil</h5>
+                            <p class="small">Atendimento local via WhatsApp, telefone e chat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DIFERENCIAIS COM ÍCONES -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Porque escolher a ITS Brasil</h2>
+            <p class="text-muted">O diferencial que vai além da velocidade contratada</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-3 col-6">
+                <div class="p-3"><i class="fas fa-infinity fa-3x text-secondary"></i><h5 class="mt-3 fw-bold">Fibra até você</h5><p class="small">Sem perda de sinal, sem oscilação</p></div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3"><i class="fas fa-hand-holding-heart fa-3x text-secondary"></i><h5 class="mt-3 fw-bold">Compromisso local</h5><p class="small">Equipe própria e resolutiva</p></div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3"><i class="fas fa-dollar-sign fa-3x text-secondary"></i><h5 class="mt-3 fw-bold">Melhor custo-benefício</h5><p class="small">Planos transparentes, sem letras miúdas</p></div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="p-3"><i class="fas fa-tachometer-alt fa-3x text-secondary"></i><h5 class="mt-3 fw-bold">Baixa latência</h5><p class="small">Ideal para gamers e reuniões</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTATO / ENDEREÇO E FORMULÁRIO -->
+<section id="contato" class="py-5" style="background: #eef2ff;">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Fale com a gente</h2>
+                <p class="mb-4">Pronto para ter uma internet que não te decepciona? Entre em contato agora e solicite sua visita técnica gratuita.</p>
+                <div class="mb-4 d-flex gap-3">
+                    <div><i class="fas fa-phone-alt fa-2x text-secondary"></i></div>
+                    <div><strong>Telefone / WhatsApp:</strong><br> (71) 3402-0820</div>
+                </div>
+                <div class="mb-4 d-flex gap-3">
+                    <div><i class="fas fa-map-marker-alt fa-2x text-secondary"></i></div>
+                    <div><strong>Endereço matriz:</strong><br> Rua Soldado Luiz Gonzaga das Virgens, 111 - Caminho das Arvores<br> Salvador - BA, 41820-560</div>
+                </div>
+                <div class="mb-4 d-flex gap-3">
+                    <div><i class="fas fa-envelope fa-2x text-secondary"></i></div>
+                    <div><strong>E-mail comercial:</strong><br> atendimento@itsbrasil.com.br</div>
+                </div>
+                <div class="mt-3">
+                    <a href="https://wa.me/557134020820" class="btn btn-success rounded-pill px-4 py-2"><i class="fab fa-whatsapp me-2"></i>Fale no WhatsApp</a>
+                    <a href="tel:7134020820" class="btn btn-outline-secondary rounded-pill ms-2 px-4 py-2"><i class="fas fa-phone-alt me-2"></i>Ligar agora</a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="info-box p-4">
+                    <h4 class="fw-bold mb-3">Solicite uma visita ou planos</h4>
+                    <form action="#" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control form-control-lg" placeholder="Seu nome completo" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control form-control-lg" placeholder="(71) 9XXXX-XXXX" required></div>
+                            <div class="col-12"><input type="email" class="form-control form-control-lg" placeholder="Melhor e-mail"></div>
+                            <div class="col-12"><textarea rows="3" class="form-control" placeholder="Conte-nos qual plano mais te interessou ou deixe sua mensagem..."></textarea></div>
+                            <div class="col-12"><button class="btn btn-primary-custom w-100 py-3"><i class="fas fa-paper-plane me-2"></i>Enviar mensagem</button></div>
+                            <div class="col-12"><small class="text-muted">* Nossos consultores entrarão em contato em até 15 minutos.</small></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER COM CNPJ E DIREITOS -->
+<footer class="pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h4 class="fw-bold text-white">ITS<span class="text-secondary">Brasil</span></h4>
+                <p class="small opacity-75">Internet com propósito, conexão com futuro. Atendemos Salvador e região metropolitana com fibra óptica de verdade.</p>
+                <div class="mt-3">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h6 class="text-uppercase fw-semibold text-white">Institucional</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><i class="fas fa-chevron-right me-2 text-secondary fa-xs"></i> <strong>CNPJ:</strong> 08.772.214/0001-98</li>
+                    <li class="mb-2"><i class="fas fa-chevron-right me-2 text-secondary fa-xs"></i> <strong>Desde:</strong> 12/04/2007 (Situação Ativa)</li>
+                    <li class="mb-2"><i class="fas fa-chevron-right me-2 text-secondary fa-xs"></i> <strong>Razão Social:</strong> Its Telecomunicacoes LTDA</li>
+                    <li class="mb-2"><i class="fas fa-chevron-right me-2 text-secondary fa-xs"></i> Nome Fantasia: ITS Brasil</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase fw-semibold text-white">Central do Assinante</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><i class="fas fa-phone me-2 text-secondary"></i>(71) 3402-0820</li>
+                    <li class="mb-2"><i class="fab fa-whatsapp me-2 text-secondary"></i>(71) 3402-0820</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2 text-secondary"></i>ouvidoria@itsbrasil.com.br</li>
+                    <li class="mb-2"><i class="fas fa-clock me-2 text-secondary"></i>Atendimento: 08h - 20h (inclusive sábado)</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="opacity-25">
+        <div class="text-center small opacity-75">
+            &copy; 2025 ITS Telecomunicações LTDA - Todos os direitos reservados. <br> Rua Soldado Luiz Gonzaga das Virgens, 111, Caminho das Arvores, Salvador-BA | CEP 41820-560
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    // active nav on scroll (simples)
+    window.addEventListener('scroll', () => {
+        let sections = document.querySelectorAll('section');
+        let scrollPos = window.scrollY + 150;
+        sections.forEach(sec => {
+            let offsetTop = sec.offsetTop;
+            let offsetHeight = sec.offsetHeight;
+            let id = sec.getAttribute('id');
+            if(scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
+                document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === '#'+id) link.classList.add('active');
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
